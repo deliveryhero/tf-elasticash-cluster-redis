@@ -18,9 +18,15 @@ module "redis_cluster" {
 }
 ```
 
-## Documentation
+## Documentation generation
 
-Terraform documentation is generated automatically using [pre-commit hooks](http://www.pre-commit.com/). Follow installation instructions [here](https://pre-commit.com/#install).
+Documentation should be modified within `main.tf` and generated using [terraform-docs](https://github.com/segmentio/terraform-docs).
+Generate them like so:
+
+```bash
+go get github.com/segmentio/terraform-docs
+terraform-docs md ./ | cat -s | tail -r | tail -n +2 | tail -r > README.md
+```
 
 ## Inputs
 
