@@ -61,6 +61,12 @@ variable "cloudwatch_create_alarms" {
   description = "Whether to enable CloudWatch alarms"
 }
 
+variable "cloudwatch_alarm_prefix" {
+  type        = "string"
+  default     = "redis-"
+  description = "String to prefix cloudwatch alarm names with"
+}
+
 variable "cloudwatch_alarm_actions" {
   type        = "list"
   default     = []
