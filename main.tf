@@ -16,19 +16,19 @@ resource "aws_elasticache_replication_group" "redis" {
 }
 
 resource "aws_elasticache_subnet_group" "redis" {
-  count      = var.create_resources
+  count      = var.create_resources ? 1 : 0
   name       = "${var.name}-subnet-group"
   subnet_ids = var.subnet_ids
 }
 
 resource "aws_elasticache_parameter_group" "redis" {
-  count  = var.create_resources
+  count  = var.create_resources ? 1 : 0
   name   = "${var.name}-parameter-group"
   family = var.parameter_group_family
 }
 
 resource "aws_security_group" "redis" {
-  count       = var.create_resources
+  count       = var.create_resources ? 1 : 0
   name        = var.name
   description = "For ${var.name} redis cluster"
   vpc_id      = var.vpc_id
