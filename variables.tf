@@ -1,22 +1,22 @@
 variable "name" {
   description = "Name given resources"
-  type        = "string"
+  type        = string
 }
 
 variable "vpc_id" {
   description = "VPC ID"
-  type        = "string"
+  type        = string
 }
 
 variable "subnet_ids" {
   description = "List of subnet IDs to use"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "create_resources" {
   description = "Whether to create the Aurora cluster and related resources"
   default     = true
-  type        = "string"
+  type        = string
 }
 
 variable "number_cache_clusters" {
@@ -50,37 +50,37 @@ variable "apply_immediately" {
 }
 
 variable "notification_topic_arn" {
-  type        = "string"
+  type        = string
   default     = ""
   description = "Notification topic ARN for the cluster"
 }
 
 variable "cloudwatch_create_alarms" {
-  type        = "string"
+  type        = string
   default     = false
   description = "Whether to enable CloudWatch alarms"
 }
 
 variable "cloudwatch_alarm_prefix" {
-  type        = "string"
+  type        = string
   default     = "redis-"
   description = "String to prefix cloudwatch alarm names with"
 }
 
 variable "cloudwatch_alarm_actions" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "Actions for cloudwatch alarms. e.g. an SNS topic"
 }
 
 variable "cloudwatch_alarm_default_thresholds" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "Override default thresholds for CloudWatch alarms. See cloudwatch_alarm_thresholds in cloudwatch.tf for valid keys"
 }
 
 variable "tags" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "A map of tags to add to all resources."
 }
@@ -95,19 +95,20 @@ variable "engine_version" {
 }
 
 variable "route53_zone_id" {
-  type        = "string"
+  type        = string
   default     = ""
   description = "If specified a route53 record will be created"
 }
 
 variable "route53_record_appendix" {
-  type        = "string"
+  type        = string
   default     = ".redis"
   description = "Will be appended to the route53 record. Only used if route53_zone_id is passed also"
 }
 
 variable "route53_record_ttl" {
-  type        = "string"
+  type        = string
   default     = 60
   description = "TTL of route53 record. Only used if route53_zone_id is passed also"
 }
+
