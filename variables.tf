@@ -89,6 +89,12 @@ variable "parameter_group_family" {
   default = "redis4.0"
 }
 
+variable "parameters" {
+  type        = map(string)
+  default     = {}
+  description = "A map of parameters to modify in redis param group."
+}
+
 variable "engine_version" {
   description = "Redis engine verions"
   default     = "4.0.10"
