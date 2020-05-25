@@ -25,6 +25,14 @@ resource "aws_elasticache_parameter_group" "redis" {
   count  = var.create_resources ? 1 : 0
   name   = "${var.name}-parameter-group"
   family = var.parameter_group_family
+
+  dynamic "parameter" {
+    for_each = var.parameters
+    content {
+      name       = parameter.key
+      value      = parameter.value
+    }
+  }
 }
 
 resource "aws_security_group" "redis" {
