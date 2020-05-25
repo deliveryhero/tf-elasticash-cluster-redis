@@ -45,6 +45,7 @@ terraform-docs md ./ | cat -s | tail -r | tail -n +2 | tail -r > README.md
 | notification_topic_arn | Notification topic ARN for the cluster | string | `` | no |
 | number_cache_clusters | Number of nodes in the cluster | string | `1` | no |
 | parameter_group_family |  | string | `redis4.0` | no |
+| parameters | A map of parameters to modify in redis param group. | `map(string)` | `{}` | no |
 | port | The port on which to accept connections | string | `6379` | no |
 | route53_record_appendix | Will be appended to the route53 record. Only used if route53_zone_id is passed also | string | `.redis` | no |
 | route53_record_ttl | TTL of route53 record. Only used if route53_zone_id is passed also | string | `60` | no |
