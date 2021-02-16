@@ -86,7 +86,7 @@ variable "tags" {
 }
 
 variable "multi_az_enabled" {
-  description = "Specifies whether to enable Multi-AZ Support for the replication group. If true, number_cache_clusters must be greater than 1."
+  description = "Specifies whether to enable Multi-AZ Support for the replication group. Applied only when `number_cache_clusters` is greater than 1."
   default     = true
 }
 
