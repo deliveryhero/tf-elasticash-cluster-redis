@@ -40,6 +40,7 @@ terraform-docs md ./ | cat -s | tail -r | tail -n +2 | tail -r > README.md
 | create_resources | Whether to create the Aurora cluster and related resources | string | `true` | no |
 | engine_version | Redis engine verions | string | `4.0.10` | no |
 | maintenance_window | When to perform maintenance | string | `sun:02:30-sun:03:30` | no |
+| multi_az_enabled | Specifies whether to enable Multi-AZ Support for the replication group. Applied only when `number_cache_clusters` is greater than 1. | bool | `true` | no |
 | name | Name given resources | string | - | yes |
 | node_type | Instance type to use | string | `cache.t2.micro` | no |
 | notification_topic_arn | Notification topic ARN for the cluster | string | `` | no |
