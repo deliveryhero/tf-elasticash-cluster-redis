@@ -1,7 +1,11 @@
+locals {
+  automatic_failover_enabled  = var.number_cache_clusters > 1 ? true : false
+}
+
 resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = var.name
   replication_group_description = var.name
-  automatic_failover_enabled    = var.number_cache_clusters > 1 ? true : false
+  automatic_failover_enabled    = local.automatic_failover_enabled
   number_cache_clusters         = var.number_cache_clusters
   node_type                     = var.node_type
   engine_version                = var.engine_version
@@ -13,6 +17,7 @@ resource "aws_elasticache_replication_group" "redis" {
   port                          = var.port
   apply_immediately             = var.apply_immediately
   tags                          = var.tags
+  multi_az_enabled              = local.automatic_failover_enabled ? var.multi_az_enabled : false
 }
 
 resource "aws_elasticache_subnet_group" "redis" {

@@ -85,6 +85,11 @@ variable "tags" {
   description = "A map of tags to add to all resources."
 }
 
+variable "multi_az_enabled" {
+  description = "Specifies whether to enable Multi-AZ Support for the replication group. If true, number_cache_clusters must be greater than 1."
+  default     = true
+}
+
 variable "parameter_group_family" {
   default = "redis4.0"
 }
