@@ -6,7 +6,7 @@ resource "aws_elasticache_replication_group" "redis" {
   replication_group_id       = var.name
   description                = var.name
   automatic_failover_enabled = local.automatic_failover_enabled
-  number_cache_clusters      = var.number_cache_clusters
+  num_cache_clusters         = var.number_cache_clusters
   node_type                  = var.node_type
   engine_version             = var.engine_version
   parameter_group_name       = aws_elasticache_parameter_group.redis[0].id
