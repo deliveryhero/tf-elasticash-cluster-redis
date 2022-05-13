@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "cache_cpu" {
   )
 
   dimensions = {
-    CacheClusterId = "${aws_elasticache_replication_group.redis.id}-00${count.index + 1}"
+    CacheClusterId = "${aws_elasticache_replication_group.redis[0].id}-00${count.index + 1}"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_cloudwatch_metric_alarm" "cache_memory" {
   alarm_actions = var.cloudwatch_alarm_actions
 
   dimensions = {
-    CacheClusterId = "${aws_elasticache_replication_group.redis.id}-00${count.index + 1}"
+    CacheClusterId = "${aws_elasticache_replication_group.redis[0].id}-00${count.index + 1}"
   }
 }
 
@@ -71,7 +71,7 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage" {
   ok_actions    = var.cloudwatch_alarm_actions
 
   dimensions = {
-    CacheClusterId = "${aws_elasticache_replication_group.redis.id}-00${count.index + 1}"
+    CacheClusterId = "${aws_elasticache_replication_group.redis[0].id}-00${count.index + 1}"
   }
 }
 

@@ -3,6 +3,7 @@ locals {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
+  count                      = var.create_resources ? 1 : 0
   replication_group_id       = var.name
   description                = var.name
   automatic_failover_enabled = local.automatic_failover_enabled
@@ -49,10 +50,10 @@ resource "aws_security_group" "redis" {
 }
 
 resource "aws_security_group_rule" "redis" {
-  count                    = length(var.allowed_security_groups)
+  count                    = var.create_resources ? length(var.allowed_security_groups) : 0
   type                     = "ingress"
-  from_port                = aws_elasticache_replication_group.redis.port
-  to_port                  = aws_elasticache_replication_group.redis.port
+  from_port                = aws_elasticache_replication_group.redis[0].port
+  to_port                  = aws_elasticache_replication_group.redis[0].port
   protocol                 = "tcp"
   source_security_group_id = element(var.allowed_security_groups, count.index)
   security_group_id        = aws_security_group.redis[0].id
